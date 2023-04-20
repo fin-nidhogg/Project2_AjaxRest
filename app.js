@@ -76,9 +76,9 @@ function createShows(xml) {
         // Quick and dirty way to create html element with "template literals".
         let htmlElement = `<tr>
         <td><img class="img-fluid" src="${moviePicture}" alt="${title}"></td>
-        <td colspan="3"><h3><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h3>
-        <p>${genres} Kesto: ${lengthInMinutes} Minuuttia</p>
-        <h3><a href="${showLink}" target="_blank">Näytös: ${parseTimestamp(showStart)} | ${theatreAuditorium}</a></h3>
+        <td colspan="3"><p><h3><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h3>
+        ${genres} Kesto: ${lengthInMinutes} Minuuttia</p>
+        <h5><a href="${showLink}" target="_blank">Näytös: ${parseTimestamp(showStart)} | ${theatreAuditorium}</a></h5>
         </td>
     </tr>`
         showsTable.innerHTML += htmlElement;

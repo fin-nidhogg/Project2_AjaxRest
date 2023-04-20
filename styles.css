@@ -47,7 +47,7 @@ h1 {
     text-align: left;
 }
 
-#content h3, a {
+#content a {
     color: rgb(185, 185, 12);
     text-decoration: none;
 }
