@@ -30,7 +30,7 @@ function getAreas() {
     xhttp.open('GET', 'https://www.finnkino.fi/xml/TheatreAreas/', true);
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log('Request done');
+            console.log('Getting theatres OK');
             createSelections(this);
         }
     };
@@ -63,8 +63,7 @@ function getShows(theatreArea, inputDate) {
     xhttp.open('GET', 'https://www.finnkino.fi/xml/Schedule/?area=' + theatreArea + '&dt=' + inputDate, true);
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-            console.log('Request done');
+            console.log('Requesting shows done!');
             createShows(this);
         }
     };
@@ -99,7 +98,7 @@ function createShows(xml) {
 
         let htmlElement = `<tr>
         <td><img class="img-fluid" src="${moviePicture}" alt="${title}"></td>
-        <td colspan="3"><p><h3><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h3>
+        <td colspan="3"><p><h2><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h2>
         ${genres} Kesto: ${lengthInMinutes} Minuuttia</p>
         <h5><a href="${showLink}" target="_blank">Näytös: ${parseTimestamp(showStart)} | ${theatreAuditorium}</a></h5>
         </td>
