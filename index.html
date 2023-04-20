@@ -14,11 +14,16 @@
 <body>
     <div class="container">
         <div id="header">
-        <h1><span class="red-heading">TÄNÄÄN </span><span class="yellow-heading">LEFFAAN?</span></h1>
-        <p>Valitse sinua lähin teatteri</p>
-        <select id="dropdown" class="form-select">
-            /* JS Created selection lists goes here */
-        </select>
+            <h1><span class="red-heading">TÄNÄÄN </span><span class="yellow-heading">LEFFAAN?</span></h1>
+            <p>Milloin ja mihin haluaisit mennä elokuviin? (Tyhjä ja virheellinen PVM = Tämä päivä)</p>
+            <form>
+                <div class="input-group-sm">
+                    <input type="text" id="date" class="form-control-sm" placeholder="dd.mm.yyyy">
+                    <select id="dropdown" class="form-select-sm">
+                        /* JS Created selection lists goes here */
+                    </select>
+                </div>
+            </form>
         </div>
         <div id="content">
             <table id="shows" class="table">

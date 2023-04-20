@@ -2,6 +2,7 @@
 // Global variables
 const dropdown = document.getElementById('dropdown');
 const showsTable = document.getElementById('shows');
+const dateInput = document.getElementById('date');
 
 // Instantly after loading window, get and render all possible theatre options from finnkino API
 window.onload = function () {
@@ -16,8 +17,8 @@ window.onload = function () {
 //////////////////////////////////////////////////////// 
 
 dropdown.addEventListener("change", () => {
-    let dvalue = document.getElementById('dropdown').value;
-    getShows(dvalue, '');
+    let dropvalue = document.getElementById('dropdown').value;
+    getShows(dropvalue, dateInput.value);
 });
 
 ////////////////////////////////////////////////////////
@@ -81,7 +82,7 @@ function createShows(xml) {
 
     // Iterate through the shows list
     for (let i = 0; i < shows.length; i++) {
-        
+
         // Let's read the necessary information into variables from the returned xml for later use.
 
         let title = shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
