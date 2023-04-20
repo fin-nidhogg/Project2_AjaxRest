@@ -10,13 +10,21 @@ window.onload = function () {
     getShows(); // Get initial list of all shows today when no value selected
 };
 
-// Event listener for dropdown menu to get value and corresponding data from API
+////////////////////////////////////////////////////////
+//  Trigger the getShows() function if 
+//  a change is detected in the drop-down menu.
+//////////////////////////////////////////////////////// 
+
 dropdown.addEventListener("change", () => {
-    var dvalue = document.getElementById('dropdown').value;
+    let dvalue = document.getElementById('dropdown').value;
     getShows(dvalue, '');
 });
 
-// Load theatre data from 
+////////////////////////////////////////////////////////
+//  GET selectable theaters from Finnkino's API and 
+//  create options based on response data.
+//////////////////////////////////////////////////////// 
+
 function getAreas() {
     let xhttp = new XMLHttpRequest();
     xhttp.open('GET', 'https://www.finnkino.fi/xml/TheatreAreas/', true);
@@ -27,12 +35,15 @@ function getAreas() {
         }
     };
     xhttp.send();
-}
+};
 
-// Function to create new selection option to dropdown
+////////////////////////////////////////////////////////
+//  Function to create new selection option to dropdown
+//////////////////////////////////////////////////////// 
+
 function createSelections(xml) {
-    var xmlData = xml.responseXML;
-    var theatres = xmlData.getElementsByTagName("TheatreArea");
+    let xmlData = xml.responseXML;
+    let theatres = xmlData.getElementsByTagName("TheatreArea");
 
     for (let i = 0; i < theatres.length; i++) {
         let value = theatres[i].getElementsByTagName("ID")[0].childNodes[0].nodeValue;
@@ -42,7 +53,11 @@ function createSelections(xml) {
     };
 };
 
-// Function to get all shows of desired theatre and date. Date defaults today if none given.
+//////////////////////////////////////////////////////
+//  Function to get all shows of desired
+//  theatre and date. Date defaults today if none given.
+//////////////////////////////////////////////////////
+
 function getShows(theatreArea, inputDate) {
     let xhttp = new XMLHttpRequest();
     xhttp.open('GET', 'https://www.finnkino.fi/xml/Schedule/?area=' + theatreArea + '&dt=' + inputDate, true);
@@ -56,13 +71,20 @@ function getShows(theatreArea, inputDate) {
     xhttp.send();
 };
 
-// Function to create show element
+//////////////////////////////////////////////////////
+//  Function to create show element
+//////////////////////////////////////////////////////
+
 function createShows(xml) {
-    var xmlData = xml.responseXML;
-    var shows = xmlData.getElementsByTagName("Show");
+    let xmlData = xml.responseXML;
+    let shows = xmlData.getElementsByTagName("Show");
     showsTable.innerHTML = '';
 
+    // Iterate through the shows list
     for (let i = 0; i < shows.length; i++) {
+        
+        // Let's read the necessary information into variables from the returned xml for later use.
+
         let title = shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
         let prodYear = shows[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
         let genres = shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue;
@@ -74,6 +96,7 @@ function createShows(xml) {
         let moviePicture = shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue;
 
         // Quick and dirty way to create html element with "template literals".
+
         let htmlElement = `<tr>
         <td><img class="img-fluid" src="${moviePicture}" alt="${title}"></td>
         <td colspan="3"><p><h3><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h3>
@@ -85,10 +108,13 @@ function createShows(xml) {
     };
 };
 
-// Function to parse timestamp to more readable form
+//////////////////////////////////////////////////////
+//  Function to parse timestamp to more readable form
+//////////////////////////////////////////////////////
+
 function parseTimestamp(timestamp) {
     unixTime = Date.parse(timestamp);
-    var date = new Date(unixTime);
-    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    let date = new Date(unixTime);
+    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     return date.toLocaleTimeString("fi-FI", options);
-}
+};
