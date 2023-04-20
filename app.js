@@ -84,7 +84,6 @@ function createShows(xml) {
     for (let i = 0; i < shows.length; i++) {
 
         // Let's read the necessary information into variables from the returned xml for later use.
-
         let title = shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
         let prodYear = shows[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
         let genres = shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue;
@@ -96,7 +95,6 @@ function createShows(xml) {
         let moviePicture = shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue;
 
         // Quick and dirty way to create html element with "template literals".
-
         let htmlElement = `<tr>
         <td><img class="img-fluid" src="${moviePicture}" alt="${title}"></td>
         <td colspan="3"><p><h2><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h2>
