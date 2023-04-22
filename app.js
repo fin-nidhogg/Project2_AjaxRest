@@ -24,6 +24,7 @@ dropdown.addEventListener("change", () => {
 ///////////////////////////////////////////////////////////
 // Remove focus from any element if key [Enter] is pressed
 ///////////////////////////////////////////////////////////
+
 todolist[0].addEventListener("keydown", (event) => {
     if (event.keyCode == 13) {
       event.preventDefault();
