@@ -5,7 +5,7 @@ Sovellus hakee päivämäärän sekä valitun teatterin perusteella kaikki näyt
 HUOM! Annathan alussa Javascriptille tovin aikaa tehdä omat taikansa. (Hää meinaa hakee KAIKKIEN teatterien KAIKKI NÄYTÖKSET.....)
 
 [>> Netlifyssä julkaistu demo löytyy täältä <<](https://leffaan.netlify.app/)   
-[>> Projektin esittelyvideo täällä <<](https://video.laurea.fi/media/JS_Projekti/0_x0mw4w9f)
+[>> Projektin esittelyvideo täällä <<](https://video.laurea.fi/media/AJAX-sovellus+REST+APIa+hy%C3%B6dynt%C3%A4en/0_f2oyqdr3)
 
 ## Referenssit.
 [Finnkino api dokumentaatio](https://www.finnkino.fi/xml)  
