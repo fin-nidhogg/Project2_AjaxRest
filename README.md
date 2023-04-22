@@ -8,7 +8,7 @@ HUOM! Annathan alussa Javascriptille tovin aikaa tehdä omat taikansa. (Hää me
 [>> Projektin esittelyvideo täällä <<](https://video.laurea.fi/media/JS_Projekti/0_x0mw4w9f)
 
 ## Referenssit.
-[Finnkino api dokumentaatio](https://www.w3schools.com/js/](https://www.finnkino.fi/xml)
+[Finnkino api dokumentaatio](https://www.w3schools.com/js/](https://www.finnkino.fi/xml)  
 [MDN Web docs - JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)  
 [W3Schools JavaScript Tutorial](https://www.w3schools.com/js/)  
 
