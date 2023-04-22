@@ -21,6 +21,16 @@ dropdown.addEventListener("change", () => {
     getShows(dropvalue, dateInput.value);
 });
 
+///////////////////////////////////////////////////////////
+// Remove focus from any element if key [Enter] is pressed
+///////////////////////////////////////////////////////////
+todolist[0].addEventListener("keydown", (event) => {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      event.target.blur();
+    }
+  });
+
 ////////////////////////////////////////////////////////
 //  GET selectable theaters from Finnkino's API and 
 //  create options based on response data.
