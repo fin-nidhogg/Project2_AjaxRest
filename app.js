@@ -60,8 +60,8 @@ function createSelections(xml) {
 //////////////////////////////////////////////////////
 
 function getShows(theatreArea, inputDate) {
-    showsTable.innerHTML = 
-    `<div class="loader">Venaa rauhassa, haetaa tietoja laiskalta API:lta..<br>
+    showsTable.innerHTML =
+        `<div class="loader">Venaa rauhassa, haetaa tietoja laiskalta API:lta..<br>
     <img class="img-fluid loading-img" src="img/loading.gif" alt="loading"></div>`;
     let xhttp = new XMLHttpRequest();
     xhttp.open('GET', 'https://www.finnkino.fi/xml/Schedule/?area=' + theatreArea + '&dt=' + inputDate, true);
@@ -83,28 +83,38 @@ function createShows(xml) {
     let shows = xmlData.getElementsByTagName("Show");
     showsTable.innerHTML = '';
 
-    // Iterate through the shows list
-    for (let i = 0; i < shows.length; i++) {
+    // Check if there is actually shows in array. Iterate through the shows list and render those on the table
+    if (shows.length > 0) {
+        for (let i = 0; i < shows.length; i++) {
+            // Let's read the necessary information into variables from the returned xml for later use.
+            let title = shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+            let prodYear = shows[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
+            let genres = shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue;
+            let lengthInMinutes = shows[i].getElementsByTagName("LengthInMinutes")[0].childNodes[0].nodeValue;
+            let showStart = shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue;
+            let theatreAuditorium = shows[i].getElementsByTagName("TheatreAndAuditorium")[0].childNodes[0].nodeValue;
+            let eventLink = shows[i].getElementsByTagName("EventURL")[0].childNodes[0].nodeValue;
+            let showLink = shows[i].getElementsByTagName("ShowURL")[0].childNodes[0].nodeValue;
+            let moviePicture = shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue;
 
-        // Let's read the necessary information into variables from the returned xml for later use.
-        let title = shows[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-        let prodYear = shows[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
-        let genres = shows[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue;
-        let lengthInMinutes = shows[i].getElementsByTagName("LengthInMinutes")[0].childNodes[0].nodeValue;
-        let showStart = shows[i].getElementsByTagName("dttmShowStart")[0].childNodes[0].nodeValue;
-        let theatreAuditorium = shows[i].getElementsByTagName("TheatreAndAuditorium")[0].childNodes[0].nodeValue;
-        let eventLink = shows[i].getElementsByTagName("EventURL")[0].childNodes[0].nodeValue;
-        let showLink = shows[i].getElementsByTagName("ShowURL")[0].childNodes[0].nodeValue;
-        let moviePicture = shows[i].getElementsByTagName("EventSmallImagePortrait")[0].childNodes[0].nodeValue;
-
-        // Quick and dirty way to create html element with "template literals".
-        let htmlElement = `<tr>
+            // Quick and dirty way to create html element with "template literals".
+            let htmlElement = `<tr>
         <td><img class="img-fluid" src="${moviePicture}" alt="${title}"></td>
         <td colspan="3"><p><h2><a href="${eventLink}" target="_blank">${title} - ${prodYear}</a></h2>
         ${genres} Kesto: ${lengthInMinutes} Minuuttia</p>
         <h5><a href="${showLink}" target="_blank">Näytös: ${parseTimestamp(showStart)} | ${theatreAuditorium}</a></h5>
         </td>
     </tr>`
+            showsTable.innerHTML += htmlElement;
+        };
+    }   // Else show error message
+    else {
+        let htmlElement = `<tr>
+        <td><img class="img-fluid" src="img/sadface.png" alt="error"></td>
+        <td colspan="3"><p><h2>Voe rähämä! Ei yhtään näytöstä!</h2>
+        Ettei nyt vain olisi päivämäärä keturallaan?</p>
+        </td>
+        </tr>`
         showsTable.innerHTML += htmlElement;
     };
 };
