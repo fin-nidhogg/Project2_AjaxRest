@@ -60,6 +60,9 @@ function createSelections(xml) {
 //////////////////////////////////////////////////////
 
 function getShows(theatreArea, inputDate) {
+    showsTable.innerHTML = 
+    `<div class="loader">Venaa rauhassa, haetaa tietoja laiskalta API:lta..<br>
+    <img class="img-fluid loading-img" src="img/loading.gif" alt="loading"></div>`;
     let xhttp = new XMLHttpRequest();
     xhttp.open('GET', 'https://www.finnkino.fi/xml/Schedule/?area=' + theatreArea + '&dt=' + inputDate, true);
     xhttp.onreadystatechange = function () {
